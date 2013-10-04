@@ -37,10 +37,16 @@ class Commands
   end
 
   def cmd_send(cmd)
-    cmd = URI.encode(cmd)
-    request = Net::HTTP::Get.new("#{@uri.request_uri}#{cmd}")
-    response = @http.request(request)
-    puts response.body
+    begin
+      cmd = URI.encode(cmd)
+      request = Net::HTTP::Get.new("#{@uri.request_uri}#{cmd}")
+      response = @http.request(request)
+      puts response.body
+    rescue
+      puts "[!] ".yellow + "Make sure shell URL is loaded"
+      puts "Usage: set http://domain.com/shellname.ext?cmd="
+    end
+
   end
 
   def cmd_help(cmd=nil)
@@ -73,8 +79,8 @@ class Commands
         return false
       end
     rescue
-      #puts "[!] ".yellow + "Invalid URL: #{url}\n"
-      #puts "Usage: set http://domain.com/shellname.ext?cmd="
+      puts "[!] ".yellow + "Invalid URL: #{url}\n"
+      puts "Usage: set http://domain.com/shellname.ext?cmd="
     end
 
   end
