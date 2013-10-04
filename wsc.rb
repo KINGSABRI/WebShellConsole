@@ -79,8 +79,8 @@ class Commands
         return false
       end
     rescue
-      puts "[!] ".yellow + "Invalid URL: #{url}\n"
-      puts "Usage: set http://domain.com/shellname.ext?cmd="
+      #puts "[!] ".yellow + "Invalid URL: #{url}\n"
+      #puts "Usage: set http://domain.com/shellname.ext?cmd="
     end
 
   end
